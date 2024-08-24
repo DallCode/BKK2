@@ -41,11 +41,11 @@ class AlumniImport implements ToModel, WithHeadingRow, WithValidation
         return [
             'nik' => 'required|string|max:16|unique:alumni,nik',
             'nama' => 'required|string|max:255',
-            'jenis_kelamin' => ['required', Rule::in(['Laki Laki', 'Perempuan'])],
+            'jenis_kelamin' => ['required', Rule::in(['Laki-Laki', 'Perempuan'])],
             'jurusan' => 'required|string|max:100',
             'tahun_lulus' => 'required|digits:4|integer|min:1900|max:' . date('Y'),
             'username' => 'required|string|max:255|unique:users,username',
-            'password' => 'required|string|min:8',
+            'password' => 'required|string|min:4',
         ];
     }
 

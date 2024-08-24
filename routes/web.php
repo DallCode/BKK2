@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardadminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,16 @@ Route::get('/alumniadmin', [App\Http\Controllers\AlumniadminController::class, '
 
 Route::get('/importdata', [App\Http\Controllers\ImportController::class, 'index'])->name('importdata');
 Route::post('/import', [App\Http\Controllers\ImportController::class, 'import'])->name('import');
+
+Route::get('/tambahdataperusahaan', [App\Http\Controllers\TambahDataPerusahaanController::class, 'index'])->name('tambahdataperusahaan');
+Route::post('/tambahdataperusahaan', [App\Http\Controllers\TambahDataperusahaanController::class, 'store'])->name('tambahdataperusahaan');
+
+
+Route::get('/dataperusahaan', [App\Http\Controllers\DataPerusahaanController::class, 'index'])->name('dataperusahaan');
+
+
+
+
 
 
 

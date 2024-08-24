@@ -79,12 +79,12 @@
                     <div class="collapse" id="data-perusahaan">
                       <ul class="nav nav-collapse">
                         <li>
-                          <a href="../demo1/tambah-data-perusahaan.html">
+                          <a href="{{route('tambahdataperusahaan')}}">
                             <span class="sub-item">Tambah Data</span>
                           </a>
                         </li>
                         <li>
-                          <a href="../demo1/lihat-data-perusahaan.html">
+                          <a href="{{route('dataperusahaan')}}">
                             <span class="sub-item">Lihat Data</span>
                           </a>
                         </li>

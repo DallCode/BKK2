@@ -38,7 +38,7 @@
                 <div class="col col-stats ms-3 ms-sm-0">
                   <div class="numbers">
                     <p class="card-category">Alumni</p>
-                    <h4 class="card-title">{{$jumlahAlumni}}</h4>
+                    <h4 class="card-title">123</h4>
                   </div>
                 </div>
               </div>
@@ -59,7 +59,7 @@
                 <div class="col col-stats ms-3 ms-sm-0">
                   <div class="numbers">
                     <p class="card-category">Perusahaan</p>
-                    <h4 class="card-title">{{$jumlahPerusahaan}}</h4>
+                    <h4 class="card-title">134</h4>
                   </div>
                 </div>
               </div>
