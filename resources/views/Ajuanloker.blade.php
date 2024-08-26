@@ -39,7 +39,7 @@
 <div class="container">
     <div class="page-inner">
         <div class="page-header">
-            <h3 class="fw-bold mb-3">Akun Pengguna</h3>
+            <h3 class="fw-bold mb-3">Ajuan Loker</h3>
             <ul class="breadcrumbs mb-3">
                 <li class="nav-home">
                     <a href="{{ route('dashboard') }}">
@@ -59,65 +59,65 @@
                             <table id="basic-datatables" class="display table table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Username</th>
-                                        <th>Role</th>
+                                        <th>Jabatan</th>
+                                        <th>status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody id="alumni-table">
-                                    @foreach($users as $us)
-                                    <tr>
-                                        <td>{{ $us->username }}</td>
-                                        <td>{{ $us->role }}</td>
-                                        <td>
-                                            <!-- Button to trigger the modal -->
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aktivitasPenggunaModal{{ $us->id }}">
-                                                Pemantauan
-                                            </button>
+                                    @foreach($loker as $lowongan)
+            <tr data-status="{{ $lowongan->status }}">
+                <td>{{ $lowongan->jabatan }}</td>
+                <td>{{ $lowongan->status }}</td>
+                <td>
+                    <!-- Button to Open the Modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailModal{{ $lowongan->id_lowongan_pekerjaan }}">
+                        Lihat Detail
+                    </button>
 
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="aktivitasPenggunaModal{{ $us->id_aktivitas_users }}" tabindex="-1" aria-labelledby="aktivitasPenggunaModalLabel{{ $us->id_aktivitas_users }}" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="aktivitasPenggunaModalLabel{{ $us->id_aktivitas_users }}">Aktivitas Pengguna: {{ $us->username }}</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="table-responsive">
-                                                                <table class="table table-striped">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th scope="col">Waktu</th>
-                                                                            <th scope="col">Keterangan</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <!-- Pastikan Anda mem-filter aktivitas berdasarkan pengguna -->
-                                                                        @foreach ($aktivitas as $ak) <!-- Jika Anda memiliki relasi -->
-                                                                        <tr>
-                                                                            <td>{{ $ak->tanggal }}</td>
-                                                                            <td>{{ $ak->keterangan }}</td>
-                                                                        </tr>
-                                                                        @endforeach
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    @endforeach
+                    <!-- The Modal -->
+                    <div class="modal fade" id="detailModal{{ $lowongan->id_lowongan_pekerjaan }}" tabindex="-1" aria-labelledby="detailModalLabel{{ $lowongan->id_lowongan_pekerjaan }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="detailModalLabel{{ $lowongan->id_lowongan_pekerjaan }}">Detail Lowongan: {{ $lowongan->jabatan }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p><strong>Jabatan:</strong> {{ $lowongan->jabatan }}</p>
+                                    <p><strong>Jenis Waktu Pekerjaan:</strong> {{ $lowongan->jenis_waktu_pekerjaan }}</p>
+                                    <p><strong>Deskripsi:</strong> {{ $lowongan->deskripsi }}</p>
+                                    <p><strong>Tanggal Akhir:</strong> {{ $lowongan->tanggal_akhir }}</p>
+                                    <p><strong>Status:</strong> {{ $lowongan->status }}</p>
+
+                                    <!-- Dropdown to change status -->
+                                    <form action="{{ route('update.status', $lowongan->id_lowongan_pekerjaan) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="mb-3">
+                                            <label for="status{{ $lowongan->id_lowongan_pekerjaan }}" class="form-label"><strong>Ubah Status:</strong></label>
+                                            <select class="form-select" id="status{{ $lowongan->id_lowongan_pekerjaan }}" name="status">
+                                                <option value="Dipublikasi" {{ $lowongan->status == 'Dipublikasi' ? 'selected' : '' }}>Dipublikasi</option>
+                                                <option value="Tidak Dipublikasi" {{ $lowongan->status == 'Tidak Dipublikasi' ? 'selected' : '' }}>Tidak Dipublikasi</option>
+                                            </select>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success">Simpan Perubahan</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Username</th>
-                                        <th>Role</th>
+                                        <th>Jabatan</th>
+                                        <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </tfoot>

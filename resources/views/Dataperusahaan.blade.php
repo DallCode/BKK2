@@ -30,6 +30,13 @@
 <!-- CSS Just for demo purpose, don't include it in your project -->
 <link rel="stylesheet" href="{{ asset('BKK2/assets/css/demo.css')}}" />
 
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+
 <div class="container">
     <div class="page-inner">
       <div class="page-header">
@@ -60,6 +67,7 @@
                       <th>Bidang Usaha</th>
                       <th>Nomer telepon</th>
                       <th>Alamat</th>
+                      <th>Status</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
@@ -79,11 +87,60 @@
                             {{$p->alamat}}
                         </td>
                         <td>
-                            <a href="{{ route('tambahdataperusahaan') }}" class="btn btn-warning">
-                                Edit
-                            </a>
-                            
+                            {{$p->status}}
                         </td>
+                        <td>
+                          <!-- Button trigger modal edit -->
+                          <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal-{{ $p->id_data_perusahaan }}">
+                              Edit
+                          </button>
+
+                            <!-- Modal for edit -->
+        <div class="modal fade" id="editModal-{{ $p->id_data_perusahaan }}" tabindex="-1" aria-labelledby="editModalLabel-{{ $p->id_data_perusahaan }}" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="editModalLabel-{{ $p->id_data_perusahaan }}">Edit Perusahaan</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      <!-- Form for edit -->
+                      <form action="{{ route('perusahaan.update', $p->id_data_perusahaan) }}" method="POST">
+                          @csrf
+                          @method('PUT')
+                          <div class="mb-3">
+                              <label for="nama" class="form-label">Nama Perusahaan</label>
+                              <input type="text" class="form-control" id="nama" name="nama" value="{{ $p->nama }}">
+                          </div>
+                          <div class="mb-3">
+                              <label for="bidang_usaha" class="form-label">Bidang Usaha</label>
+                              <input type="text" class="form-control" id="bidang_usaha" name="bidang_usaha" value="{{ $p->bidang_usaha }}">
+                          </div>
+                          <div class="mb-3">
+                              <label for="no_telepon" class="form-label">No Telepon</label>
+                              <input type="text" class="form-control" id="no_telepon" name="no_telepon" value="{{ $p->no_telepon }}">
+                          </div>
+                          <div class="mb-3">
+                              <label for="alamat" class="form-label">Alamat</label>
+                              <textarea class="form-control" id="alamat" name="alamat">{{ $p->alamat }}</textarea>
+                          </div>
+                          <div class="mb-3">
+                              <label for="status" class="form-label">Status</label>
+                              <select class="form-select" id="status" name="status">
+                                  <option value="aktif" {{ $p->status === 'aktif' ? 'selected' : '' }}>Aktif</option>
+                                  <option value="tidak aktif" {{ $p->status === 'tidak aktif' ? 'selected' : '' }}>Tidak Aktif</option>
+                              </select>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">Save changes</button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+                      </td>
                     </tr>
                     @endforeach
                   </tbody>

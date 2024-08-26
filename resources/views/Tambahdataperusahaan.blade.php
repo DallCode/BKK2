@@ -7,8 +7,8 @@
         @csrf
         <!-- Nama Perusahaan -->
         <div class="form-group">
-            <label for="nama_perusahaan">Nama Perusahaan:</label>
-            <input type="text" id="nama_perusahaan" name="nama_perusahaan" class="form-control" required>
+            <label for="nama">Nama Perusahaan:</label>
+            <input type="text" id="nama" name="nama" class="form-control" required>
         </div>
 
         <!-- Bidang Usaha -->
@@ -20,7 +20,7 @@
         <!-- Nomor Telepon -->
         <div class="form-group">
             <label for="nomor_telepon">Nomor Telepon:</label>
-            <input type="text" id="nomor_telepon" name="nomor_telepon" class="form-control" required>
+            <input type="text" id="no_telepon" name="no_telepon" class="form-control" required>
         </div>
 
         <!-- Alamat -->

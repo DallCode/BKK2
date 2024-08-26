@@ -14,7 +14,7 @@ class Alumni extends Model
     protected $table = 'data_alumni';
     protected $primaryKey = 'nik';
     public $incrementing = false;
-    protected $fillable = ['nik','username','nama','jurusan','jenis_kelamin','tahun_lulus','alamat','keahlian','foto','deskripsi'];
+    protected $fillable = ['nik','username','nama','jurusan','jenis_kelamin','tahun_lulus','alamat','keahlian','foto','deskripsi','status'];
     public $timestamps = false;
     public function pengguna () : BelongsTo {
         return $this->belongsTo(Users::class);

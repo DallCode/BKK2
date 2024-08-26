@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 // use App\Http\Controllers\Controller;
 // use App\Models\pengguna;
-use App\Models\User;
+use App\Models\Users;
 use App\Models\Perusahaan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +27,7 @@ class LoginController extends Controller
         'password' => 'required'
     ]);
 
-    $user = User::where('username', $request->username)->first();
+    $user = Users::where('username', $request->username)->first();
     $perusahaan = Perusahaan::where('username', $user->username)->first();
 
 
@@ -49,7 +49,7 @@ class LoginController extends Controller
 }
 
     public function logout () {
-        return Auth::user();
+        // return Auth::user();
         Auth::logout();
         return redirect()->route('login');
     }

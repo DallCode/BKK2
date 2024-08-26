@@ -14,9 +14,25 @@ class DataperusahaanController extends Controller
         return view('Dataperusahaan', compact('perusahaan',));
     }
 
+    public function update(Request $request, string $id_data_perusahaan)
+    {
+        
+        $perusahaan = Perusahaan::find($id_data_perusahaan);
     
-
+        
+        // if ($request->input('status')) {
+            $perusahaan->update(['status' => $request->input('status')]);
+            // } 
+            $perusahaan->nama = $request->input('nama');
+            $perusahaan->bidang_usaha = $request->input('bidang_usaha');
+            $perusahaan->no_telepon = $request->input('no_telepon');
+        $perusahaan->alamat = $request->input('alamat');
+        $perusahaan->save();
+        
+        return redirect()->back()->with(['toast' => 'true', 'status' => 'success', 'message' => 'Berhasil Mengubah Status']);
+        // return redirect()->route('perusahaan.index')->with('success', 'Data perusahaan berhasil diperbarui.');
+    
+    }
+    
+    
 }
-
-
-

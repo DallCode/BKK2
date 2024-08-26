@@ -76,4 +76,3 @@ class Perusahaan extends Model
         return $this->hasMany(User::class, 'username');
     }
 }
-

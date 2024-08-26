@@ -18,30 +18,32 @@ class TambahDataPerusahaanController extends Controller
     }
 
     public function store(Request $request)
-{
-
-    // return $request;
-    $request->validate([
-        'username' => 'required|string|max:255',
-        'password' => 'required|string',
-    ]);
-
-    $pengguna = Users::create([
-        'username' => $request->input('username'),
-        'password' => Hash::make($request->input('password')),
-        'role' => 'Perusahaan',
-    ]);
-
-    Perusahaan::create([
-        'id_data_perusahaan' => $pengguna->id_data_perusahaan ,
-        'username' => $pengguna->username,
-        'nama' => $request->input('nama'),
-        'bidang_usaha' => $request->input('bidang_usaha'),
-        'no_telepon' => $request->input('no_telepon'),
-        'alamat' => $request->input('alamat'),
-    ]);
-
-    // Perusahaan::create($validated);
-    return redirect('/tambahdataperusahaan')->with('success', 'Data berhasil ditambahkan');
-}
+    {
+        // $request->validate([
+        //     'nama_perusahaan' => 'required|string|max:255',
+        //     'bidang_usaha' => 'required|string|max:255',
+        //     'no_telepon' => 'required|string|max:20',
+        //     'alamat' => 'required|string|max:255',
+        //     'username' => 'required|string|max:255|unique:users',
+        //     'password' => 'required|string|min:6',
+        // ]);
+    
+        $pengguna = Users::create([
+            'username' => $request->input('username'),
+            'password' => Hash::make($request->input('password')),
+            'role' => 'Perusahaan',
+        ]);
+    
+        Perusahaan::create([
+            'id_data_perusahaan' => $pengguna->id,
+            'username' => $pengguna->username,
+            'nama' => $request->input('nama'),
+            'bidang_usaha' => $request->input('bidang_usaha'),
+            'no_telepon' => $request->input('no_telepon'),
+            'alamat' => $request->input('alamat'),
+        ]);
+    
+        return redirect('/dataperusahaan')->with('success', 'Data berhasil ditambahkan');
+    }
+    
 }
