@@ -27,23 +27,23 @@ class TambahDataPerusahaanController extends Controller
         //     'username' => 'required|string|max:255|unique:users',
         //     'password' => 'required|string|min:6',
         // ]);
-    
+
         $pengguna = Users::create([
             'username' => $request->input('username'),
             'password' => Hash::make($request->input('password')),
             'role' => 'Perusahaan',
         ]);
-    
+
         Perusahaan::create([
-            'id_data_perusahaan' => $pengguna->id,
+            
             'username' => $pengguna->username,
             'nama' => $request->input('nama'),
             'bidang_usaha' => $request->input('bidang_usaha'),
             'no_telepon' => $request->input('no_telepon'),
             'alamat' => $request->input('alamat'),
         ]);
-    
+
         return redirect('/dataperusahaan')->with('success', 'Data berhasil ditambahkan');
     }
-    
+
 }

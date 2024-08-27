@@ -40,7 +40,7 @@ class LoginController extends Controller
     }
 
     if ($user->role == 'Perusahaan' && $perusahaan->status == 'Tidak Aktif') {
-        return redirect()->back()->with('error', 'Akun Tidak Aktif.');
+        return redirect()->back()->with('error', 'Akun sudah Tidak Aktif.');
     }
     Auth::login($user);
     $role = $user->role;

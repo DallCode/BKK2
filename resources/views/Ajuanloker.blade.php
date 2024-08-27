@@ -198,6 +198,23 @@
                 ]);
             $("#addRowModal").modal("hide");
         });
+
+         // Show notify on success
+         @if (session('success'))
+           $.notify({
+               title: '<strong>Success</strong>',
+               message: "{{ session('success') }}"
+           },{
+               type: 'success',
+               placement: {
+                   from: "top",
+                   align: "right"
+               },
+               delay: 5000,
+               timer: 1000
+           });
+       @endif
+
     });
 </script>
 @endsection

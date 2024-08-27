@@ -25,7 +25,7 @@
         <div class="sidebar-content">
             <ul class="nav nav-secondary">
                 <!-- Dashboard -->
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a href="{{ route('dashboard') }}" class="collapsed">
                         <i class="fas fa-home"></i>
                         <p>Dashboard</p>
@@ -77,7 +77,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('dataperusahaan') }}">
+                                            <a href="{{ route('perusahaan.index') }}">
                                                 <span class="sub-item">Lihat Data</span>
                                             </a>
                                         </li>
@@ -100,7 +100,15 @@
                 <li class="nav-item">
                     <a href="{{ route('lokeradmin') }}">
                         <i class="fas fa-briefcase"></i>
-                        <p>Data Loker</p>
+                        <p>Ajuan Loker</p>
+                    </a>
+                </li>
+
+                   <!-- Data Lamaran -->
+                   <li class="nav-item">
+                    <a href="{{ route('datalamaranadmin') }}">
+                        <i class="fas fa-archive"></i>
+                        <p>Data Lamaran</p>
                     </a>
                 </li>
 
@@ -108,6 +116,17 @@
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
                     </span>
+                </li>
+
+                  <!-- Sign Out -->
+                  <li class="nav-item">
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <p>Sign Out</p>
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </li>
             </ul>
         </div>

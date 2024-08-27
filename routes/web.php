@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DatalokerController;
 use App\Http\Controllers\DashboardadminController;
+use App\Http\Controllers\DashboardperusahaanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +30,7 @@ Route::get('/', function () {
 
 // Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\DashboardadminController::class, 'index'])->name('dashboard');
+Route::get('/home', [App\Http\Controllers\HalamanController::class, 'index'])->name('dashboard');
 
 // Dashboard Admin Route
 Route::get('/dashboardadmin', [App\Http\Controllers\DashboardadminController::class, 'index'])->name('dashboardadmin');
@@ -46,7 +48,7 @@ Route::get('/tambahdataperusahaan', [App\Http\Controllers\TambahDataPerusahaanCo
 Route::post('/tambahdataperusahaan', [App\Http\Controllers\TambahDataperusahaanController::class, 'store'])->name('tambahdataperusahaan');
 
 // Route for View Data Perusahaan in Admin
-Route::get('/dataperusahaan', [App\Http\Controllers\DataPerusahaanController::class, 'index'])->name('dataperusahaan');
+Route::get('/dataperusahaan', [App\Http\Controllers\DataPerusahaanController::class, 'index'])->name('perusahaan.index');
 Route::put('/perusahaan/update/{id_data_perusahaan}', [App\Http\Controllers\DataPerusahaanController::class, 'update'])->name('perusahaan.update');
 
 // Route for Akun Pengguna
@@ -55,3 +57,20 @@ Route::get('/akunpengguna', [App\Http\Controllers\AkunpenggunaController::class,
 // Rute for Loker in Admin
 Route::get('/lokeradmin', [App\Http\Controllers\AjuanlokerController::class, 'index'])->name('lokeradmin');
 Route::put('/loker/{id_lowongan_pekerjaan}/update-status', [App\Http\Controllers\AjuanlokerController::class, 'updateStatus'])->name('update.status');
+
+// Route for Dashboard Perusahaan
+Route::get('/dashboardperusahaan', [App\Http\Controllers\DashboardperusahaanController::class, 'index'])->name('dashboardperusahaan');
+
+// Route for Data Loker in Perusahaan
+Route::get('/dataloker', [App\Http\Controllers\DatalokerController::class, 'index'])->name('dataloker');
+Route::get('/lowongan/{id_lowongan_pekerjaan}', [DatalokerController::class, 'show'])->name('lowongan.show');
+Route::post('/lowongan/store', [DatalokerController::class, 'store'])->name('lowongan.store');
+Route::get('/lowongan', [DatalokerController::class, 'index'])->name('lowongan.index');
+Route::put('/lowongan/{id_lowongan_pekerjaan}', [DatalokerController::class, 'update'])->name('lowongan.update');
+
+// Route for Dashboard Alumni in Alumni Role
+Route::get('/dashboardalumni', [App\Http\Controllers\DashboardalumniController::class, 'index'])->name('dashboardalumni');
+
+// Route for Data Lamaran in Admin
+Route::get('/datalamaranadmin', [App\Http\Controllers\DatalamaranAdminController::class, 'index'])->name('datalamaranadmin');
+
