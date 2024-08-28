@@ -71,16 +71,16 @@
                                         <td>{{ $us->role }}</td>
                                         <td>
                                             <!-- Button to trigger the modal -->
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aktivitasPenggunaModal{{ $us->id }}">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aktivitasPenggunaModal{{ $us->username }}">
                                                 Pemantauan
                                             </button>
 
                                             <!-- Modal -->
-                                            <div class="modal fade" id="aktivitasPenggunaModal{{ $us->id_aktivitas_users }}" tabindex="-1" aria-labelledby="aktivitasPenggunaModalLabel{{ $us->id_aktivitas_users }}" aria-hidden="true">
+                                            <div class="modal fade" id="aktivitasPenggunaModal{{ $us->username }}" tabindex="-1" aria-labelledby="aktivitasPenggunaModalLabel{{ $us->username }}" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="aktivitasPenggunaModalLabel{{ $us->id_aktivitas_users }}">Aktivitas Pengguna: {{ $us->username }}</h5>
+                                                            <h5 class="modal-title" id="aktivitasPenggunaModalLabel{{ $us->username }}">Aktivitas Pengguna: {{ $us->username }}</h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">

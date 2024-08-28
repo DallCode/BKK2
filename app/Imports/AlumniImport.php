@@ -23,7 +23,7 @@ class AlumniImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         $user = Users::create([
-            'username' => $row['username'],
+            'username' => $row['nik'],
             'password' => bcrypt($row['password']),
             'role' => 'Alumni'
         ]);

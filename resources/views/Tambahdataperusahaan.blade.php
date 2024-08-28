@@ -45,7 +45,12 @@
                         <!-- Password -->
                         <div class="form-group mb-3">
                             <label for="password">Password:</label>
-                            <input type="password" id="password" name="password" class="form-control" required>
+                            <div class="input-group">
+                                <input type="password" id="password" name="password" class="form-control" required>
+                                <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                                    <i class="fa fa-eye"></i>
+                                </button>
+                            </div>
                         </div>
 
                         <!-- Submit Button -->
@@ -75,5 +80,35 @@
                timer: 1000
            });
        @endif
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var bidangUsahaSelect = document.getElementById('bidang_usaha');
+        var bidangUsahaLainnya = document.getElementById('bidangUsahaLainnya');
+
+        bidangUsahaSelect.addEventListener('change', function() {
+            if (this.value === 'lainnya') {
+                bidangUsahaLainnya.style.display = 'block';
+                bidangUsahaLainnya.querySelector('input').required = true; // Set input required
+            } else {
+                bidangUsahaLainnya.style.display = 'none';
+                bidangUsahaLainnya.querySelector('input').required = false; // Unset input required
+            }
+        });
+
+        // Trigger change event to set initial state
+        bidangUsahaSelect.dispatchEvent(new Event('change'));
+
+        // Toggle password visibility
+        var passwordInput = document.getElementById('password');
+        var togglePasswordButton = document.getElementById('togglePassword');
+        var isPasswordVisible = false;
+
+        togglePasswordButton.addEventListener('click', function() {
+            isPasswordVisible = !isPasswordVisible;
+            passwordInput.type = isPasswordVisible ? 'text' : 'password';
+            togglePasswordButton.innerHTML = isPasswordVisible ? '<i class="fa fa-eye-slash"></i>' : '<i class="fa fa-eye"></i>';
+        });
+    });
 </script>
 @endsection

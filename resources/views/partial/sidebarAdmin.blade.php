@@ -4,7 +4,7 @@
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="dark">
             <a href="index.html" class="logo">
-                <img src="{{ asset('BKK2/assets/img/kaiadmin/logo_light.svg') }}" alt="navbar brand" class="navbar-brand" height="20" />
+                <img src="{{ asset('BKK2/assets/img/kaiadmin/karir.png') }}" alt="navbar brand" class="navbar-brand" height="auto" style="width: 180px"/>
             </a>
             <div class="nav-toggle">
                 <button class="btn btn-toggle toggle-sidebar">
@@ -109,6 +109,14 @@
                     <a href="{{ route('datalamaranadmin') }}">
                         <i class="fas fa-archive"></i>
                         <p>Data Lamaran</p>
+                    </a>
+                </li>
+
+                 <!-- Data Lamaran -->
+                 <li class="nav-item">
+                    <a href="{{ route('datalamaranadmin') }}">
+                        <i class="fas fa-file-alt"></i>
+                        <p>Laporan</p>
                     </a>
                 </li>
 

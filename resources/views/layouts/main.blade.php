@@ -2,14 +2,14 @@
 <html lang="en">
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Kaiadmin - Bootstrap 5 Admin Dashboard</title>
+    <title>Karier Sebelas</title>
     <meta
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
       name="viewport"
     />
     <link
       rel="icon"
-      href="{{ asset ('BKK2/assets/img/kaiadmin/favicon.ico')}}"
+      href="{{ asset ('BKK2/assets/img/kaiadmin/karir1.png')}}"
       type="image/x-icon"
     />
 
