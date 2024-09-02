@@ -25,8 +25,9 @@ Route::prefix('auth')->group(function () {
 
 Route::get('/', function () {
     // return view('dashboardAdmin');
-    return redirect('/dashboardadmin');
+    return view('auth/login');
 });
+
 
 // Auth::routes();
 

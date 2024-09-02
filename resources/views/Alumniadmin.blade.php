@@ -161,8 +161,17 @@
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <label for="jurusan" class="form-label">Jurusan</label>
-                                                                        <input type="text" class="form-control" id="jurusan" name="jurusan" value="{{ $all->jurusan }}">
+                                                                        <select class="form-control" id="jurusan" name="jurusan">
+                                                                            <option value="AK" {{ $all->jurusan == 'AK' ? 'selected' : '' }}>AK</option>
+                                                                            <option value="BR" {{ $all->jurusan == 'BR' ? 'selected' : '' }}>BR</option>
+                                                                            <option value="DKV" {{ $all->jurusan == 'DKV' ? 'selected' : '' }}>DKV</option>
+                                                                            <option value="MLOG" {{ $all->jurusan == 'MLOG' ? 'selected' : '' }}>MLOG</option>
+                                                                            <option value="MP" {{ $all->jurusan == 'MP' ? 'selected' : '' }}>MP</option>
+                                                                            <option value="RPL" {{ $all->jurusan == 'RPL' ? 'selected' : '' }}>RPL</option>
+                                                                            <option value="TKJ" {{ $all->jurusan == 'TKJ' ? 'selected' : '' }}>TKJ</option>
+                                                                        </select>
                                                                     </div>
+
                                                                     <div class="mb-3">
                                                                         <label for="tahun_lulus" class="form-label">Tahun Lulus</label>
                                                                         <input type="text" class="form-control" id="tahun_lulus" name="tahun_lulus" value="{{ $all->tahun_lulus }}">

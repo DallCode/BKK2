@@ -15,7 +15,7 @@ class DashboardadminController extends Controller
         // if (Auth::user()->role == 'Alumni') {
         //     return redirect('/dashboardalumni');
         // }
-        
+
         $perusahaanLogin = Perusahaan::where('username', Auth::user()->username)->first();
         $alumniLogin = Alumni::where('username', Auth::user()->username)->first();
 
