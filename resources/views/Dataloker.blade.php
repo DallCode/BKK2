@@ -72,26 +72,36 @@
                                                 Lihat Detail
                                             </button>
 
-                                            <!-- The Modal -->
-                                            <div class="modal fade" id="detailModal{{ $lowongan->id_lowongan_pekerjaan }}" tabindex="-1" aria-labelledby="detailModalLabel{{ $lowongan->id_lowongan_pekerjaan }}" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="detailModalLabel{{ $lowongan->id_lowongan_pekerjaan }}">Detail Lowongan: {{ $lowongan->jabatan }}</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p><strong>Jabatan:</strong> {{ $lowongan->jabatan }}</p>
-                                                            <p><strong>Jenis Waktu Pekerjaan:</strong> {{ $lowongan->jenis_waktu_pekerjaan }}</p>
-                                                            <p><strong>Deskripsi:</strong> {{ $lowongan->deskripsi }}</p>
-                                                            <p><strong>Tanggal Akhir:</strong> {{ $lowongan->tanggal_akhir }}</p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                           <!-- The Modal -->
+<div class="modal fade" id="detailModal{{ $lowongan->id_lowongan_pekerjaan }}" tabindex="-1" aria-labelledby="detailModalLabel{{ $lowongan->id_lowongan_pekerjaan }}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailModalLabel{{ $lowongan->id_lowongan_pekerjaan }}">Detail Lowongan: {{ $lowongan->jabatan }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Jabatan:</strong> {{ $lowongan->jabatan }}</p>
+                <p><strong>Jenis Waktu Pekerjaan:</strong> {{ $lowongan->jenis_waktu_pekerjaan }}</p>
+                <p><strong>Deskripsi:</strong> {{ $lowongan->deskripsi }}</p>
+                <p><strong>Tanggal Akhir:</strong> {{ $lowongan->tanggal_akhir }}</p>
+                <p><strong>Status:</strong> {{ $lowongan->status }}</p>
+                @if (file_exists(public_path("alasan_lowongan_{$lowongan->id_lowongan_pekerjaan}.txt")))
+                @php
+                    $alasan = file_get_contents(public_path("alasan_lowongan_{$lowongan->id_lowongan_pekerjaan}.txt"));
+                @endphp
+                <div class="alert alert-info">
+                    <strong>Alasan Tidak Dipublikasi:</strong> {{ $alasan }}
+                </div>
+                @endif
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
                                             <!-- Button to Open the Edit Modal -->
                                             <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal{{ $lowongan->id_lowongan_pekerjaan }}">

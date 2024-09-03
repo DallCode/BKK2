@@ -76,7 +76,7 @@
                             <div class="col col-stats ms-3 ms-sm-0">
                                 <div class="numbers">
                                     <p class="card-category">Alumni Yang Bekerja</p>
-                                    <h4 class="card-title">23</h4>
+                                    <h4 class="card-title">{{$alumniBekerja}}</h4>
                                 </div>
                             </div>
                         </div>
@@ -96,7 +96,7 @@
                             <div class="col col-stats ms-3 ms-sm-0">
                                 <div class="numbers">
                                     <p class="card-category">Alumni Yang Belum Bekerja</p>
-                                    <h4 class="card-title">10</h4>
+                                    <h4 class="card-title">{{$alumniBelumBekerja}}</h4>
                                 </div>
                             </div>
                         </div>
@@ -105,54 +105,50 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-9">
-                <div class="card card-round">
-                    <div class="card-header">
-                        <div class="card-head-row">
-                            <div class="card-title">Statistik Alumni Bekerja</div>
-                            <div class="card-tools">
-                                <a href="#" class="btn btn-label-success btn-round btn-sm me-2">
-                                    <span class="btn-label"><i class="fa fa-pencil"></i></span>
-                                    Export
-                                </a>
-                                <a href="#" class="btn btn-label-info btn-round btn-sm">
-                                    <span class="btn-label"><i class="fa fa-print"></i></span>
-                                    Print
-                                </a>
-                            </div>
-                        </div>
+        <div class="card card-round">
+            <div class="card-header">
+                <div class="card-head-row">
+                    <div class="card-title">Statistik Alumni Bekerja</div>
+                    <div class="card-tools">
+                        <a href="#" class="btn btn-label-success btn-round btn-sm me-2">
+                            <span class="btn-label"><i class="fa fa-pencil"></i></span>
+                            Export
+                        </a>
+                        <a href="#" class="btn btn-label-info btn-round btn-sm">
+                            <span class="btn-label"><i class="fa fa-print"></i></span>
+                            Print
+                        </a>
                     </div>
-                    <div class="card-body">
-                        <!-- Dropdown Tahun -->
-                        <div class="form-group col-md-2">
-                            <label for="yearSelect">Pilih Tahun:</label>
-                            <select id="yearSelect" class="form-select">
-                                <option value="2023">2023</option>
-                                <option value="2024">2024</option>
-                                <!-- Tambahkan tahun lain jika perlu -->
-                            </select>
-                        </div>
-                        <!-- Chart Container -->
-                        <div class="chart-container">
-                            <canvas id="barChart"></canvas>
-                        </div>
-                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <!-- Dropdown Tahun -->
+                <div class="form-group col-md-2">
+                    <label for="yearSelect">Pilih Tahun:</label>
+                    <select id="yearSelect" class="form-select">
+                        <option value="2023" {{ $currentYear == '2023' ? 'selected' : '' }}>2023</option>
+                        <option value="2024" {{ $currentYear == '2024' ? 'selected' : '' }}>2024</option>
+                        <!-- Tambahkan tahun lain jika perlu -->
+                    </select>
+                </div>
+                <!-- Chart Container -->
+                <div class="chart-container">
+                    <canvas id="barChart"></canvas>
                 </div>
             </div>
         </div>
 
-            <div class="card card-round col-md-9">
+            {{-- <div class="card card-round">
                 <div class="card-body pb-0">
                     <div class="h1 fw-bold float-end text-primary">+5%</div>
                     <h2 class="mb-2">17</h2>
                     <p class="text-muted">Users online</p>
                     <div class="pull-in sparkline-fix">
                         <div id="lineChart"></div>
-                    </div>
-                </div>
+                    </div> --}}
+                {{-- </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 
@@ -162,21 +158,20 @@
 <script src="{{ asset('BKK2/assets/js/plugin/chart.js/chart.min.js') }}"></script>
 <script src="{{ asset('BKK2/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js') }}"></script>
 <script src="{{ asset('BKK2/assets/js/kaiadmin.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var ctx = document.getElementById('barChart').getContext('2d');
         var myBarChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: [
-                    "Telkom", "Chlorine", "Scola", "ForIT", "Kabayan", "Bara", "Titik Terang", "LEN", "Paninti", "Google", "Metaverse", "Dec"
-                ],
+                labels: @json($labels), // Mengirimkan data label dari controller
                 datasets: [{
                     label: 'Alumni Masuk Perusahaan',
                     backgroundColor: 'rgba(23, 125, 255, 0.7)',
                     borderColor: 'rgb(23, 125, 255)',
                     borderWidth: 2,
-                    data: [3, 2, 9, 5, 4, 6, 4, 6, 7, 8, 7, 4] // Data awal, akan diubah berdasarkan tahun
+                    data: @json($values) // Mengirimkan data nilai dari controller
                 }]
             },
             options: {
@@ -212,14 +207,7 @@
 
         // Fungsi untuk memperbarui data grafik berdasarkan tahun yang dipilih
         function updateChartData(year) {
-            // Data contoh berdasarkan tahun (ganti dengan data yang sesuai)
-            var dataByYear = {
-                '2023': [3, 2, 9, 5, 4, 6, 4, 6, 7, 8, 7, 4],
-                '2024': [4, 3, 8, 6, 5, 7, 5, 7, 8, 9, 8, 5]
-            };
-
-            myBarChart.data.datasets[0].data = dataByYear[year];
-            myBarChart.update();
+            // Implementasikan logika jika Anda perlu mengubah data saat tahun dipilih
         }
 
         // Event listener untuk dropdown tahun
@@ -227,6 +215,9 @@
             var selectedYear = event.target.value;
             updateChartData(selectedYear);
         });
+
+        // Initial load
+        updateChartData(document.getElementById('yearSelect').value);
     });
     </script>
 

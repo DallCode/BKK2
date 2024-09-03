@@ -10,13 +10,15 @@ class DatalokerController extends Controller
 {
     public function index()
     {
-
+        // Mendapatkan data perusahaan yang sedang login berdasarkan username
         $perusahaanLogin = Perusahaan::where('username', Auth::user()->username)->first();
 
-        $loker = Loker::all(); // Mengambil semua data lowongan
+        // Memfilter data loker berdasarkan id_data_perusahaan dari perusahaan yang sedang login
+        $loker = Loker::where('id_data_perusahaan', $perusahaanLogin->id_data_perusahaan)->get();
+    
+        // Mengirimkan data perusahaan yang login dan loker yang difilter ke view
         return view('dataLoker', compact('perusahaanLogin', 'loker'));
-        // return view('dataLoker', compact('loker')); // Mengirimkan data ke view
-}
+    }
 
 public function store(Request $request)
 {

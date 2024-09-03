@@ -23,12 +23,31 @@ class AjuanlokerController extends Controller
     }
 
     public function updateStatus(Request $request, $id)
-{
-    $lowongan = Loker::findOrFail($id);
-    $lowongan->status = $request->status;
-    $lowongan->save();
+    {
+        $request->validate([
+            'status' => 'required|in:Dipublikasi,Tidak Dipublikasi',
+            'alasan' => 'nullable|string',
+        ]);
 
-    return redirect()->back()->with('success', 'Status lowongan berhasil diubah.');
-}
+        $lowongan = Loker::findOrFail($id);
+        $oldStatus = $lowongan->status;
+        $lowongan->status = $request->status;
 
+        // Simpan alasan ke file jika status diubah menjadi "Tidak Dipublikasi"
+        if ($lowongan->status === 'Tidak Dipublikasi') {
+            $alasan = $request->input('alasan');
+            $filePath = public_path("alasan_lowongan_{$id}.txt");
+            file_put_contents($filePath, $alasan);
+        } else {
+            // Hapus file alasan jika status diubah dari "Tidak Dipublikasi"
+            $filePath = public_path("alasan_lowongan_{$id}.txt");
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+        }
+
+        $lowongan->save();
+
+        return redirect()->back()->with('success', 'Status lowongan berhasil diubah.');
+    }
 }

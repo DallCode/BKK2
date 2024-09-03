@@ -12,11 +12,24 @@ class Lamaran extends Model
     protected $table = 'lamaran';
     protected $fillable = ['id_lamaran','id_lowongan_pekerjaan', 'nik', 'status'];
 
-    public function loker () : BelongsTo {
-        return $this->belongsTo(Loker::class);
+    public function loker(): BelongsTo {
+        return $this->belongsTo(Loker::class, 'id_lowongan_pekerjaan');
     }
 
     public function alumni () : BelongsTo {
-        return $this->belongsTo(Alumni::class);
+        return $this->belongsTo(Alumni::class,);
+    }
+
+
+
+
+    private static function generateKodeUnik()
+    {
+        $prefix = 'L-'; // Bisa disesuaikan sesuai kebutuhan
+        $lastRecord = self::orderBy('id_lamaran', 'desc')->first();
+        $lastNumber = $lastRecord ? intval(substr($lastRecord->id_lamaran, strlen($prefix))) : 0;
+        $newNumber = $lastNumber + 1;
+
+        return $prefix . str_pad($newNumber, 6, '0', STR_PAD_LEFT);
     }
 }

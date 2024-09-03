@@ -104,17 +104,10 @@
                     </a>
                 </li>
 
-                   <!-- Data Lamaran -->
-                   <li class="nav-item">
-                    <a href="{{ route('datalamaranadmin') }}">
-                        <i class="fas fa-archive"></i>
-                        <p>Data Lamaran</p>
-                    </a>
-                </li>
 
                  <!-- Data Lamaran -->
                  <li class="nav-item">
-                    <a href="{{ route('datalamaranadmin') }}">
+                    <a href="{{ route('laporan') }}">
                         <i class="fas fa-file-alt"></i>
                         <p>Laporan</p>
                     </a>
