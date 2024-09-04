@@ -13,6 +13,7 @@
       type="image/x-icon"
     />
 
+
     <!-- Fonts and icons -->
     <script src="{{ asset('BKK2/assets/js/plugin/webfont/webfont.min.js')}}"></script>
     <script>
@@ -37,6 +38,8 @@
     <link rel="stylesheet" href="{{ asset('BKK2/assets/css/bootstrap.min.css')}}" />
     <link rel="stylesheet" href="{{ asset('BKK2/assets/css/plugins.min.css')}}" />
     <link rel="stylesheet" href="{{ asset('BKK2/assets/css/kaiadmin.min.css')}}" />
+
+
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="{{ asset('BKK2/assets/css/demo.css')}}" />
@@ -79,12 +82,12 @@
             </div>
             <!-- End Logo Header -->
           </div>
-          @include('partial.navbar')
+          {{-- @include('partial.navbar') --}}
 
           @yield('content')
 
 
-          @include('partial.footer')
+          {{-- @include('partial.footer') --}}
       </div>
     </div>
     <!--   Core JS Files   -->
@@ -151,5 +154,7 @@
         fillColor: "rgba(255, 165, 52, .14)",
       });
     </script>
+
+
   </body>
 </html>

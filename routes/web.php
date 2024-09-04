@@ -72,6 +72,12 @@ Route::put('/lowongan/{id_lowongan_pekerjaan}', [DatalokerController::class, 'up
 // Route for Alumni Role
 // Route for Dashboard Alumni
 Route::get('/dashboardalumni', [App\Http\Controllers\DashboardalumniController::class, 'index'])->name('dashboardalumni');
+// Route untuk halaman detail pekerjaan
+Route::get('/job-detail/{id}', [App\Http\Controllers\JobDetailController::class, 'show'])->name('job.detail');
+// web.php
+Route::get('/search', [App\Http\Controllers\DashboardalumniController::class, 'index'])->name('job.search');
+
+
 
 // Route untuk Chart
 // Route::get('/statistics', [App\Http\Controllers\StatisticsController::class, 'index']);

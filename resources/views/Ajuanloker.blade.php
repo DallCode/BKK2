@@ -75,7 +75,7 @@
                         Lihat Detail
                     </button>
 
-                   <!-- The Modal -->
+                 <!-- The Modal -->
 <div class="modal fade" id="detailModal{{ $lowongan->id_lowongan_pekerjaan }}" tabindex="-1" aria-labelledby="detailModalLabel{{ $lowongan->id_lowongan_pekerjaan }}" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
