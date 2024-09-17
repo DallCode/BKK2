@@ -8,6 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="{{ asset('BKK2/assets/js/plugin/webfont/webfont.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
 <script>
   WebFont.load({
     google: { families: ["Public Sans:300,400,500,600,700"] },
@@ -25,12 +26,40 @@
     },
   });
 </script>
+<script>
+    @if (session('success'))
+    $.notify({
+        title: '<strong>Success</strong>',
+        message: "{{ session('success') }}"
+    },{
+        type: 'success',
+        placement: {
+            from: "top",
+            align: "right"
+        },
+        delay: 5000,
+        timer: 1000
+    });
+@endif
+
+</script>
 
 <!-- CSS Files -->
 <link rel="stylesheet" href="{{ asset('BKK2/assets/css/bootstrap.min.css')}}" />
 <link rel="stylesheet" href="{{ asset('BKK2/assets/css/plugins.min.css')}}" />
 <link rel="stylesheet" href="{{ asset('BKK2/assets/css/kaiadmin.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('BKK2/assets/css/demo.css')}}" />
+
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+{{-- @if (session('success'))
+    console.log("Success: {{ session('success') }}");
+@endif --}}
+
 
 <div class="container">
     <div class="page-inner">
@@ -72,36 +101,35 @@
                                                 Lihat Detail
                                             </button>
 
-                                           <!-- The Modal -->
-<div class="modal fade" id="detailModal{{ $lowongan->id_lowongan_pekerjaan }}" tabindex="-1" aria-labelledby="detailModalLabel{{ $lowongan->id_lowongan_pekerjaan }}" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="detailModalLabel{{ $lowongan->id_lowongan_pekerjaan }}">Detail Lowongan: {{ $lowongan->jabatan }}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p><strong>Jabatan:</strong> {{ $lowongan->jabatan }}</p>
-                <p><strong>Jenis Waktu Pekerjaan:</strong> {{ $lowongan->jenis_waktu_pekerjaan }}</p>
-                <p><strong>Deskripsi:</strong> {{ $lowongan->deskripsi }}</p>
-                <p><strong>Tanggal Akhir:</strong> {{ $lowongan->tanggal_akhir }}</p>
-                <p><strong>Status:</strong> {{ $lowongan->status }}</p>
-                @if (file_exists(public_path("alasan_lowongan_{$lowongan->id_lowongan_pekerjaan}.txt")))
-                @php
-                    $alasan = file_get_contents(public_path("alasan_lowongan_{$lowongan->id_lowongan_pekerjaan}.txt"));
-                @endphp
-                <div class="alert alert-info">
-                    <strong>Alasan Tidak Dipublikasi:</strong> {{ $alasan }}
-                </div>
-                @endif
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
+                                            <!-- The Modal -->
+                                            <div class="modal fade" id="detailModal{{ $lowongan->id_lowongan_pekerjaan }}" tabindex="-1" data-bs-backdrop="false" aria-labelledby="detailModalLabel{{ $lowongan->id_lowongan_pekerjaan }}" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="detailModalLabel{{ $lowongan->id_lowongan_pekerjaan }}">Detail Lowongan: {{ $lowongan->jabatan }}</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p><strong>Jabatan:</strong> {{ $lowongan->jabatan }}</p>
+                                                            <p><strong>Jenis Waktu Pekerjaan:</strong> {{ $lowongan->jenis_waktu_pekerjaan }}</p>
+                                                            <p><strong>Deskripsi:</strong> {{ $lowongan->deskripsi }}</p>
+                                                            <p><strong>Tanggal Akhir:</strong> {{ $lowongan->tanggal_akhir }}</p>
+                                                            <p><strong>Status:</strong> {{ $lowongan->status }}</p>
+                                                            @if (file_exists(public_path("alasan_lowongan_{$lowongan->id_lowongan_pekerjaan}.txt")))
+                                                                @php
+                                                                    $alasan = file_get_contents(public_path("alasan_lowongan_{$lowongan->id_lowongan_pekerjaan}.txt"));
+                                                                @endphp
+                                                                <div class="alert alert-info">
+                                                                    <strong>Alasan Tidak Dipublikasi:</strong> {{ $alasan }}
+                                                                </div>
+                                                            @endif
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                             <!-- Button to Open the Edit Modal -->
                                             <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal{{ $lowongan->id_lowongan_pekerjaan }}">
@@ -109,7 +137,7 @@
                                             </button>
 
                                             <!-- The Edit Modal -->
-                                            <div class="modal fade" id="editModal{{ $lowongan->id_lowongan_pekerjaan }}" tabindex="-1" aria-labelledby="editModalLabel{{ $lowongan->id_lowongan_pekerjaan }}" aria-hidden="true">
+                                            <div class="modal fade" id="editModal{{ $lowongan->id_lowongan_pekerjaan }}" tabindex="-1" data-bs-backdrop="false" aria-labelledby="editModalLabel{{ $lowongan->id_lowongan_pekerjaan }}" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -147,7 +175,6 @@
                                                                     <label for="tanggal_akhir{{ $lowongan->id_lowongan_pekerjaan }}" class="form-label">Tanggal Akhir Lowongan</label>
                                                                     <input class="form-control" type="date" id="tanggal_akhir{{ $lowongan->id_lowongan_pekerjaan }}" name="tanggal_akhir" value="{{ $lowongan->tanggal_akhir }}" required />
                                                                 </div>
-
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -167,60 +194,58 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
 
 <!-- Modal untuk menambah data loker -->
-<div class="modal fade" id="addJobModal" tabindex="-1" aria-labelledby="addJobModalLabel" aria-hidden="true">
+<div class="modal fade" id="addJobModal" tabindex="-1" data-bs-backdrop="false" aria-labelledby="addJobModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addJobModalLabel">Tambah Data Loker</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form action="{{ route('lowongan.store') }}"  method="POST">
-                    @csrf
-                    <!-- Form input sesuai yang sebelumnya -->
+            <form action="{{ route('lowongan.store') }}" method="POST">
+                @csrf
+                <div class="modal-body">
                     <div class="mb-3">
-                        <label for="jabatan_pekerjaan" class="form-label" required>Jabatan Pekerjaan</label>
-                        <input class="form-control" type="text" id="jabatan_pekerjaan" name="jabatan_pekerjaan" placeholder="Jabatan pekerjaan" autofocus required />
+                        <label for="jabatan" class="form-label">Jabatan Pekerjaan</label>
+                        <input class="form-control" type="text" id="jabatan" name="jabatan" placeholder="Jabatan pekerjaan" autofocus required />
                     </div>
                     <div class="mb-3">
                         <label for="jenis_waktu_pekerjaan" class="form-label">Jenis Waktu Pekerjaan</label>
                         <select class="form-control" id="jenis_waktu_pekerjaan" name="jenis_waktu_pekerjaan" required>
-                            <option value="">Pilih Jenis Waktu Pekerjaan</option>
-                            <option value="Waktu Kerja Standar (Full-Time)">Waktu Kerja Standar (Full-Time)</option>
+                            <option value="" selected>Pilih Jenis Waktu Pekerjaan</option>
+                            <option value="Waktu Kerja Standar (Full-Time)" >Waktu Kerja Standar (Full-Time)</option>
                             <option value="Waktu Kerja Paruh Waktu (Part-Time)">Waktu Kerja Paruh Waktu (Part-Time)</option>
-                            <option value="Waktu Kerja Fleksibel (Flexible Hours)">Waktu Kerja Fleksibel (Flexible Hours)</option>
+                            <option value="Waktu Kerja Fleksibel (Flexible Hours)" >Waktu Kerja Fleksibel (Flexible Hours)</option>
                             <option value="Shift Kerja (Shift Work)">Shift Kerja (Shift Work)</option>
                             <option value="Waktu Kerja Bergilir (Rotating Shift)">Waktu Kerja Bergilir (Rotating Shift)</option>
-                            <option value="Waktu Kerja Jarak Jarah (Remote work)">Waktu Kerja Jarak Jarah (Remote work)</option>
+                            <option value="Waktu Kerja Jarak Jauh (Remote work)" >Waktu Kerja Jarak Jauh (Remote work)</option>
                             <option value="Waktu Kerja Kontrak (Contract Work)">Waktu Kerja Kontrak (Contract Work)</option>
                             <option value="Waktu Kerja Proyek (Project-Based Work)">Waktu Kerja Proyek (Project-Based Work)</option>
-                            <option value="Waktu Kerja Tidak Teratur (Irregular Work)">Waktu Kerja Tidak Teratur (Irregular Work)</option>
-                            <option value="Waktu Kerja Sementara (Temporary Work)">Waktu Kerja Sementara (Temporary Work)</option>
-                            <!-- Tambahkan opsi lainnya jika diperlukan -->
+                            <option value="Waktu Kerja Musiman (Seasonal Work)">Waktu Kerja Musiman (Seasonal Work)</option>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="tanggal_akhir" class="form-label">Batas Waktu</label>
-                        <input type="date" class="form-control" id="tanggal_akhir" name="tanggal_akhir" placeholder="Batas Waktu" required />
+                        <label for="deskripsi" class="form-label">Deskripsi Pekerjaan</label>
+                        <textarea class="form-control" id="deskripsi" name="deskripsi" rows="4" required></textarea>
                     </div>
-
                     <div class="mb-3">
-                        <label for="deskripsi" class="form-label">Deskripsi</label>
-                        <textarea class="form-control" id="deskripsi" name="deskripsi" placeholder="Deskripsi" required></textarea>
+                        <label for="tanggal_akhir" class="form-label">Tanggal Akhir Lowongan</label>
+                        <input class="form-control" type="date" id="tanggal_akhir" name="tanggal_akhir" required />
                     </div>
-                    <button type="submit" class="btn btn-primary">Tambah</button>
-                </form>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
-
-@endsection
 
 <!--   Core JS Files   -->
 <script src="{{ asset('BKK2/assets/js/core/jquery-3.7.1.min.js')}}"></script>
@@ -233,67 +258,11 @@
 <script src="{{ asset('BKK2/assets/js/plugin/datatables/datatables.min.js')}}"></script>
 <!-- Kaiadmin JS -->
 <script src="{{ asset('BKK2/assets/js/kaiadmin.min.js')}}"></script>
-<!-- Kaiadmin DEMO methods, don't include it in your project! -->
-<script src="{{ asset('BKK2/assets/js/setting-demo2.js')}}"></script>
 <script>
-  $(document).ready(function () {
-    $("#basic-datatables").DataTable({});
-
-    // Filter select dropdowns
-    $("#multi-filter-select").DataTable({
-      pageLength: 5,
-      initComplete: function () {
-        this.api()
-          .columns()
-          .every(function () {
-            var column = this;
-            var select = $('<select class="form-select"><option value=""></option></select>')
-              .appendTo($(column.footer()).empty())
-              .on("change", function () {
-                var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                column.search(val ? "^" + val + "$" : "", true, false).draw();
-              });
-            column.data().unique().sort().each(function (d, j) {
-              select.append('<option value="' + d + '">' + d + "</option>");
-            });
-          });
-      },
+    $(document).ready(function() {
+        $('#basic-datatables').DataTable();
     });
-
-    // Add Row functionality
-    $("#add-row").DataTable({
-      pageLength: 5,
-    });
-
-    var action =
-      '<td> <div class="form-button-action"> <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';
-
-    $("#addRowButton").click(function () {
-      $("#add-row")
-        .dataTable()
-        .fnAddData([
-          $("#addName").val(),
-          $("#addPosition").val(),
-          $("#addOffice").val(),
-          action,
-        ]);
-      $("#addRowModal").modal("hide");
-    });
-
-    // Show notify on success
-    @if (session('success'))
-        $.notify({
-            title: '<strong>Success</strong>',
-            message: "{{ session('success') }}"
-        },{
-            type: 'success',
-            placement: {
-                from: "top",
-                align: "right"
-            },
-            delay: 5000,
-            timer: 1000
-        });
-    @endif
-  });
 </script>
+
+
+@endsection

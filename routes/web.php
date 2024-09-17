@@ -76,6 +76,8 @@ Route::get('/dashboardalumni', [App\Http\Controllers\DashboardalumniController::
 Route::get('/job-detail/{id}', [App\Http\Controllers\JobDetailController::class, 'show'])->name('job.detail');
 // web.php
 Route::get('/search', [App\Http\Controllers\DashboardalumniController::class, 'index'])->name('job.search');
+// Route for Alumni Profile
+Route::get('/profilealumni', [App\Http\Controllers\ProfAlumniController::class, 'index'])->name('profilealumni');
 
 
 

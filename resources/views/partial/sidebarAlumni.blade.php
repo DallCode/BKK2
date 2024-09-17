@@ -25,7 +25,7 @@
         <div class="sidebar-content">
             <ul class="nav nav-secondary">
                 <!-- Dashboard -->
-                <li class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                <li class="nav-item">
                     <a href="{{ route('dashboard') }}">
                         <i class="fas fa-home"></i>
                         <p>Dashboard</p>
@@ -33,17 +33,17 @@
                 </li>
 
                 <!-- Data Loker -->
-                <li class="nav-item {{ request()->routeIs('dataloker') ? 'active' : '' }}">
+                <li class="nav-item">
                     <a href="{{ route('dataloker') }}">
-                        <i class="fas fa-user-cog"></i>
+                        <i class="fas fa-archive"></i>
                         <p>Lamaran Saya</p>
                     </a>
                 </li>
 
                 <!-- Data Lamaran -->
-                <li class="nav-item {{ request()->routeIs('lokeradmin') ? 'active' : '' }}">
-                    <a href="{{ route('lokeradmin') }}">
-                        <i class="fas fa-briefcase"></i>
+                <li class="nav-item">
+                    <a href="{{ route('profilealumni') }}">
+                        <i class="fas fa-id-card"></i>
                         <p>Profile</p>
                     </a>
                 </li>

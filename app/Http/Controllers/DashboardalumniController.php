@@ -26,7 +26,8 @@ class DashboardalumniController extends Controller
                 });
             })
             ->with('perusahaan') // Eager load perusahaan untuk menghindari N+1 query
-            ->get();
+            ->paginate(10);
+            // ->get();
 
 
         return view('dashboardAlumni', compact('alumniLogin', 'Loker'));

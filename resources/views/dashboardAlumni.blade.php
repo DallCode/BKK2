@@ -1,81 +1,74 @@
 @extends('layouts.main')
 
 @section('content')
+<div class="container mt-4">
+    <h2>Informasi Lowongan Pekerjaan</h2>
 
-<link rel="stylesheet" href="{{ asset('BKK3/css/custom-bs.css') }}">
-<link rel="stylesheet" href="{{ asset('BKK3/css/jquery.fancybox.min.css') }}">
-<link rel="stylesheet" href="{{ asset('BKK3/css/bootstrap-select.min.css') }}">
-<link rel="stylesheet" href="{{ asset('BKK3/fonts/icomoon/style.css') }}">
-<link rel="stylesheet" href="{{ asset('BKK3/fonts/line-icons/style.css') }}">
-<link rel="stylesheet" href="{{ asset('BKK3/css/owl.carousel.min.css') }}">
-<link rel="stylesheet" href="{{ asset('BKK3/css/animate.min.css') }}">
-<link rel="stylesheet" href="{{ asset('BKK3/css/quill.snow.css') }}">
-<!-- MAIN CSS -->
-<link rel="stylesheet" href="{{ asset('BKK3/css/style.css') }}">
-
-<section class="site-section" id="next">
-    <div class="p-5">
-        <div class="row mb-5 justify-content-left">
-            <div class="col-md-7 text-left">
-                <h2 class="section-title mb-2">Dashboard</h2>
-            </div>
-        </div>
-
-           <!-- Search Form -->
-           <form method="GET" action="{{ route('job.search') }}" class="mb-5">
-            <div class="input-group ">
-                <input type="text" name="search" class="form-control" placeholder="Cari lowongan..." value="{{ request()->query('search') }}">
-                <button class="btn btn-primary" type="submit">Cari</button>
-            </div>
-        </form>
-
-        <ul class="job-listings mb-5">
-            @if ($Loker->isEmpty())
-                <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                    <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-center mx-4">
-                        <p class="text-center">Saat ini tidak ada lowongan kerja yang dipublikasi.</p>
-                    </div>
-                </li>
-            @else
-                @foreach ($Loker as $loker)
-                <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                    <a href="{{ route('job.detail', $loker->id_lowongan_pekerjaan) }}"></a>
-                    <div class="job-listing-logo">
-                        <img src="{{ asset('BKK3/images/logo-kabayan-group.png') }}" alt="Image" class="img-fluid">
-                    </div>
-                    <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                        <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                            <h2>{{ $loker->jabatan }}</h2>
-                            <strong>{{ $loker->perusahaan->nama }}</strong>
-                        </div>
-                        <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                            <span class="icon-room"></span> {{ $loker->perusahaan->alamat }}
-                        </div>
-                        <div class="job-listing-meta">
-                            <span class="badge badge-primary">{{ $loker->jenis_waktu_pekerjaan }}</span>
-                        </div>
-                    </div>
-                </li>
-                @endforeach
-            @endif
-        </ul>
+  <!-- Search Form -->
+  <form method="GET" action="{{ route('job.search') }}" class="mb-5">
+    <div class="input-group ">
+        <input type="text" name="search" class="form-control" placeholder="Cari lowongan..." value="{{ request()->query('search') }}">
+        <button class="btn btn-primary" type="submit">Cari</button>
     </div>
-</section>
+</form>
 
+    <div class="row">
+        @forelse($Loker as $item)
+            <div class="col-md-6 mb-4">
+                <div class="card hover-card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $item->jabatan }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ $item->perusahaan->nama }}</h6>
+                        <p class="card-text">
+                            <i class="fas fa-clock"></i> {{ $item->jenis_waktu_pekerjaan }}<br>
+                            <i class="fas fa-map-marker-alt"></i> {{ $item->perusahaan->alamat }}<br>
+                            <i class="fas fa-calendar"></i> {{ \Carbon\Carbon::parse($item->waktu)->format('j M Y H:i')  }} sampai {{ $item->tanggal_akhir }}<br>
+                        </p>
+                        <p class="card-text">{{ $item->deskripsi }}</p>
+                        <a href="{{ route('job.detail', $item->id_lowongan_pekerjaan) }}" class="btn btn-primary">Detail</a>
+                        <a href="#" class="btn btn-outline-primary ml-2" data-bs-toggle="modal" data-bs-target="#lamarModal">Lamar</a>
 
+                    </div>
+                </div>
+            </div>
+        @empty
+            <div class="col-12">
+                <div class="alert alert-info">
+                    <strong>Belum ada lowongan</strong>
+                </div>
+            </div>
+        @endforelse
 
-<!-- SCRIPTS -->
-<script src="{{ asset('BKK3/js/jquery.min.js') }}"></script>
-<script src="{{ asset('BKK3/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('BKK3/js/isotope.pkgd.min.js') }}"></script>
-<script src="{{ asset('BKK3/js/stickyfill.min.js') }}"></script>
-<script src="{{ asset('BKK3/js/jquery.fancybox.min.js') }}"></script>
-<script src="{{ asset('BKK3/js/jquery.easing.1.3.js') }}"></script>
-<script src="{{ asset('BKK3/js/jquery.waypoints.min.js') }}"></script>
-<script src="{{ asset('BKK3/js/jquery.animateNumber.min.js') }}"></script>
-<script src="{{ asset('BKK3/js/owl.carousel.min.js') }}"></script>
-<script src="{{ asset('BKK3/js/quill.min.js') }}"></script>
-<script src="{{ asset('BKK3/js/bootstrap-select.min.js') }}"></script>
-<script src="{{ asset('BKK3/js/custom.js') }}"></script>
-
+         <!-- Pagination Links -->
+    <div class="d-flex justify-content-center">
+        {{ $Loker->links() }}
+    </div>
+    </div>
+</div>
 @endsection
+
+<style>
+    .card {
+        height: 100%;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-body {
+        display: flex;
+        flex-direction: column;
+    }
+    .card-text {
+        flex-grow: 1;
+    }
+    .fas {
+        width: 20px;
+        text-align: center;
+        margin-right: 5px;
+    }
+    .hover-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    .btn-outline-primary.ml-2 {
+        margin-top: 0.5rem;
+    }
+</style>

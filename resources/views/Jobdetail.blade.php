@@ -51,7 +51,7 @@
                                     </span>
                                     <span class="m-2">
                                         <span class="icon-clock-o mr-2"></span>
-                                        <span class="text-primary">{{ $loker->jenis_waktu_pekerjaan }}</span>
+                                        <span class="text-info">{{ $loker->jenis_waktu_pekerjaan }}</span>
                                     </span>
                                 </div>
                             </div>
@@ -64,14 +64,14 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="mb-5">
-                            <h3 class="h5 d-flex align-items-center mb-4 text-primary">
+                            <h3 class="h5 d-flex align-items-center mb-4 text-info">
                                 <span class="icon-align-left mr-3"></span>Deskripsi Pekerjaan
                             </h3>
                             <p>{{ $loker->deskripsi }}</p>
                         </div>
 
                         <div class="mb-5">
-                            <h3 class="h5 d-flex align-items-center mb-4 text-primary">
+                            <h3 class="h5 d-flex align-items-center mb-4 text-info">
                                 <span class="icon-rocket mr-3"></span>Responsibilities
                             </h3>
                             <ul class="list-unstyled m-0 p-0">
@@ -82,7 +82,7 @@
                         </div>
 
                         <div class="mb-5">
-                            <h3 class="h5 d-flex align-items-center mb-4 text-primary">
+                            <h3 class="h5 d-flex align-items-center mb-4 text-info">
                                 <span class="icon-book mr-3"></span>Education + Experience
                             </h3>
                             <ul class="list-unstyled m-0 p-0">
@@ -93,7 +93,7 @@
                         </div>
 
                         <div class="mb-5">
-                            <h3 class="h5 d-flex align-items-center mb-4 text-primary">
+                            <h3 class="h5 d-flex align-items-center mb-4 text-info">
                                 <span class="icon-turned_in mr-3"></span>Other Benefits
                             </h3>
                             <ul class="list-unstyled m-0 p-0">
@@ -110,14 +110,14 @@
                                 </a>
                             </div>
                             <div class="col-6">
-                                <a href="#" class="btn btn-block btn-primary btn-md">Lamar</a>
+                                <a href="#" class="btn btn-block btn-info btn-md">Lamar</a>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-4">
                         <div class="bg-light p-3 border rounded mb-4">
-                            <h3 class="text-primary mt-3 h5 pl-3 mb-3">Job Summary</h3>
+                            <h3 class="text-info mt-3 h5 pl-3 mb-3">Job Summary</h3>
                             <ul class="list-unstyled pl-3 mb-0">
                                 <li class="mb-2"><strong class="text-black">Employment Status:</strong> {{ $loker->jenis_waktu_pekerjaan }} </li>
                                 <li class="mb-2"><strong class="text-black">Alamat:</strong> {{ $loker->alamat }} </li>
@@ -126,14 +126,14 @@
                             </ul>
                         </div>
 
-                        <div class="bg-light p-3 border rounded">
-                            <h3 class="text-primary mt-3 h5 pl-3 mb-3">Share</h3>
+                        {{-- <div class="bg-light p-3 border rounded">
+                            <h3 class="text-info mt-3 h5 pl-3 mb-3">Share</h3>
                             <div class="px-3">
                                 <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-facebook"></span></a>
                                 <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-twitter"></span></a>
                                 <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-linkedin"></span></a>
                                 <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-pinterest"></span></a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

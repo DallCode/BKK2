@@ -24,7 +24,8 @@ class Loker extends Model
         'jenis_waktu_pekerjaan',
         'deskripsi',
         'tanggal_akhir',
-        'status'
+        'status',
+        'waktu'
     ];
 
     public function perusahaan() : BelongsTo

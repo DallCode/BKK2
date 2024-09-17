@@ -75,7 +75,7 @@
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $all->nik }}">Detail</button>
 
                             <!-- Detail Modal -->
-                            <div class="modal fade" id="exampleModal-{{ $all->nik }}" tabindex="-1" aria-labelledby="exampleModalLabel-{{ $all->nik }}" aria-hidden="true">
+                            <div class="modal fade" id="exampleModal-{{ $all->nik }}" tabindex="-1"  data-bs-backdrop="false" aria-labelledby="exampleModalLabel-{{ $all->nik }}" aria-hidden="true">
                                 <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -126,7 +126,8 @@
 
                             <!-- Edit Button and Modal -->
                             <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal-{{ $all->nik }}">Edit</button>
-                            <div class="modal fade" id="editModal-{{ $all->nik }}" tabindex="-1" aria-labelledby="editModalLabel-{{ $all->nik }}" aria-hidden="true">
+
+                            <div class="modal fade" id="editModal-{{ $all->nik }}" tabindex="-1"  data-bs-backdrop="false" aria-labelledby="editModalLabel-{{ $all->nik }}" aria-hidden="true">
                                 <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                                     <div class="modal-content">
                                         <div class="modal-header">

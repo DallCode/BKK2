@@ -83,7 +83,7 @@
                           </button>
 
                           <!-- Modal for edit -->
-                          <div class="modal fade" id="editModal-{{ $p->id_data_perusahaan }}" tabindex="-1" aria-labelledby="editModalLabel-{{ $p->id_data_perusahaan }}" aria-hidden="true">
+                          <div class="modal fade" id="editModal-{{ $p->id_data_perusahaan }}" tabindex="-1"  data-bs-backdrop="false" aria-labelledby="editModalLabel-{{ $p->id_data_perusahaan }}" aria-hidden="true">
                             <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                               <div class="modal-content">
                                 <div class="modal-header">

@@ -35,7 +35,7 @@ class TambahDataPerusahaanController extends Controller
         ]);
 
         Perusahaan::create([
-            
+
             'username' => $pengguna->username,
             'nama' => $request->input('nama'),
             'bidang_usaha' => $request->input('bidang_usaha'),
