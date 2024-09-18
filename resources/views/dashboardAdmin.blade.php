@@ -75,7 +75,7 @@
                             </div>
                             <div class="col col-stats ms-3 ms-sm-0">
                                 <div class="numbers">
-                                    <p class="card-category">Alumni Yang Bekerja</p>
+                                    <p class="card-category">Alumni Bekerja</p>
                                     <h4 class="card-title">{{$alumniBekerja}}</h4>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
                             </div>
                             <div class="col col-stats ms-3 ms-sm-0">
                                 <div class="numbers">
-                                    <p class="card-category">Alumni Yang Belum Bekerja</p>
+                                    <p class="card-category">Alumni Belum Bekerja</p>
                                     <h4 class="card-title">{{$alumniBelumBekerja}}</h4>
                                 </div>
                             </div>

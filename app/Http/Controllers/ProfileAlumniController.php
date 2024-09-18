@@ -7,11 +7,11 @@ use App\Models\PendidikanFormal;
 
 use Illuminate\Http\Request;
 
-class ProfAlumniController extends Controller
+class ProfileAlumniController extends Controller
 {
     public function index()
     {
         $user = Alumni::all(); // Atau ambil data pengguna dari database sesuai kebutuhan
-        return view('profilealumni', compact('user'));
+        return view('ProfileAlumni', compact('user'));
     }
 }
