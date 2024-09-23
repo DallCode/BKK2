@@ -10,6 +10,7 @@ class Lamaran extends Model
 {
     use HasFactory;
     protected $table = 'lamaran';
+    protected $primarykey;
     protected $fillable = ['id_lamaran','id_lowongan_pekerjaan', 'nik', 'status'];
 
     public function loker(): BelongsTo {

@@ -33,6 +33,31 @@
 <link rel="stylesheet" href="{{ asset('BKK2/assets/css/kaiadmin.min.css')}}" />
 <link rel="stylesheet" href="{{ asset('BKK2/assets/css/demo.css')}}" />
 
+<style>
+    /* Membuat body halaman bisa di-scroll */
+    html, body {
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    /* Membatasi tinggi container dan mengizinkan scroll */
+    .page-inner {
+      height: 100vh; /* 100% dari tinggi viewport */
+      overflow-y: auto;
+    }
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+* ::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+  </style>
+
 <div class="container">
     <div class="page-inner">
       <div class="page-header">
@@ -97,7 +122,6 @@
                                                                     <li><strong>Nama:</strong> {{ $all->nama }}</li>
                                                                     <li><strong>Jurusan:</strong> {{ $all->jurusan }}</li>
                                                                     <li><strong>Tahun Lulus:</strong> {{ $all->tahun_lulus }}</li>
-                                                                    <li><strong>Foto:</strong> {{ $all->avatar }}</li>
                                                                 </ul>
                                                             </div>
                                                         </div>

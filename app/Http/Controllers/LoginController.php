@@ -45,7 +45,8 @@ class LoginController extends Controller
     Auth::login($user);
     $role = $user->role;
 
-    return redirect()->route('dashboard', compact('role'));
+    return redirect()->route('dashboard', compact('role'))->with('success', 'Login berhasil');
+
 }
 
     public function logout () {

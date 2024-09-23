@@ -78,6 +78,7 @@ Route::get('/job-detail/{id}', [App\Http\Controllers\JobDetailController::class,
 Route::get('/search', [App\Http\Controllers\DashboardalumniController::class, 'index'])->name('job.search');
 // Route for Alumni Profile
 Route::get('/profilealumni', [App\Http\Controllers\ProfileAlumniController::class, 'index'])->name('profilealumni');
+Route::post('/lamar/{id}', [App\Http\Controllers\DashboardalumniController::class, 'store'])->name('lamar');
 
 
 

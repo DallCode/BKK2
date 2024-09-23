@@ -28,7 +28,7 @@
                 <li class="nav-item">
                     <a href="{{ route('dashboard') }}">
                         <i class="fas fa-home"></i>
-                        <p>Dashboard</p>
+                        <p>Cari Lowongan</p>
                     </a>
                 </li>
 
