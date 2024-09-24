@@ -34,7 +34,7 @@
 
                 <!-- Data Loker -->
                 <li class="nav-item">
-                    <a href="{{ route('dataloker') }}">
+                    <a href="{{ route('lamaransaya') }}">
                         <i class="fas fa-archive"></i>
                         <p>Lamaran Saya</p>
                     </a>

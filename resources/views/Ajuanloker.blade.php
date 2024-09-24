@@ -28,8 +28,6 @@
     <link rel="stylesheet" href="{{ asset('BKK2/assets/css/plugins.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('BKK2/assets/css/kaiadmin.min.css') }}" />
 
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link rel="stylesheet" href="{{ asset('BKK2/assets/css/demo.css') }}" />
 
     @if (session('success'))
         <div class="alert alert-success">

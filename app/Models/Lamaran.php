@@ -10,7 +10,8 @@ class Lamaran extends Model
 {
     use HasFactory;
     protected $table = 'lamaran';
-    protected $primarykey;
+    public $timestamps = false;
+    protected $primarykey ='id_lamaran';
     protected $fillable = ['id_lamaran','id_lowongan_pekerjaan', 'nik', 'status'];
 
     public function loker(): BelongsTo {
@@ -24,7 +25,8 @@ class Lamaran extends Model
 
 
 
-    private static function generateKodeUnik()
+
+    public static function generateKodeUnik()
     {
         $prefix = 'L-'; // Bisa disesuaikan sesuai kebutuhan
         $lastRecord = self::orderBy('id_lamaran', 'desc')->first();

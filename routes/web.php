@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DatalokerController;
 use App\Http\Controllers\DashboardadminController;
-use App\Http\Controllers\DashboardperusahaanController;
+use App\Http\Controllers\DashboardalumniController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +28,7 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-
 // Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HalamanController::class, 'index'])->name('dashboard');
 
 // Route for Admin Role
@@ -56,7 +54,6 @@ Route::put('/loker/{id_lowongan_pekerjaan}/update-status', [App\Http\Controllers
 // Route For Laporan
 Route::get('/laporan', [App\Http\Controllers\LaporanController::class, 'index'])->name('laporan');
 
-
 // Route for Perusahaan Role
 // Route for Dashboard Perusahaan
 Route::get('/dashboardperusahaan', [App\Http\Controllers\DashboardperusahaanController::class, 'index'])->name('dashboardperusahaan');
@@ -67,8 +64,6 @@ Route::post('/lowongan/store', [DatalokerController::class, 'store'])->name('low
 Route::get('/lowongan', [DatalokerController::class, 'index'])->name('lowongan.index');
 Route::put('/lowongan/{id_lowongan_pekerjaan}', [DatalokerController::class, 'update'])->name('lowongan.update');
 
-
-
 // Route for Alumni Role
 // Route for Dashboard Alumni
 Route::get('/dashboardalumni', [App\Http\Controllers\DashboardalumniController::class, 'index'])->name('dashboardalumni');
@@ -78,12 +73,14 @@ Route::get('/job-detail/{id}', [App\Http\Controllers\JobDetailController::class,
 Route::get('/search', [App\Http\Controllers\DashboardalumniController::class, 'index'])->name('job.search');
 // Route for Alumni Profile
 Route::get('/profilealumni', [App\Http\Controllers\ProfileAlumniController::class, 'index'])->name('profilealumni');
-Route::post('/lamar/{id}', [App\Http\Controllers\DashboardalumniController::class, 'store'])->name('lamar');
+// Route for lamaran
+Route::post('/lamar', [DashboardalumniController::class, 'store'])->name('lamar.store');
+
+Route::get('/lamaransaya', [App\Http\Controllers\LamaranSayaController::class, 'index'])->name('lamaransaya');
 
 
 
-// Route untuk Chart
-// Route::get('/statistics', [App\Http\Controllers\StatisticsController::class, 'index']);
+
 
 
 
